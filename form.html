@@ -1,221 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perjanjian Kerja Sama</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        .navbar-custom {
-            background-color: #2e7d32; /* Green color */
-            padding: 20px 0;
-        }
-        .navbar-brand {
-            color: white !important;
-            font-weight: bold;
-            margin-left: 20px;
-            font-size: 24px; /* Teks besar hanya di navbar */
-        }
-        /* Ukuran teks lebih kecil untuk semua konten lain */
-        body {
-            font-size: 14px;
-        }
-        .form-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .section-title {
-            background-color: #f8f9fa;
-            padding: 8px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .form-label {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .form-control, .form-select, .btn {
-            font-size: 14px;
-            padding: 6px 12px;
-        }
-        .array-item {
-            border: 1px solid #eee;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            position: relative;
-        }
-        .remove-btn {
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            padding: 2px 6px;
-            font-size: 12px;
-        }
-        textarea.form-control {
-            min-height: 80px;
-        }
+      .navbar-custom {
+        background-color: #2e7d32; /* Green color */
+        padding: 20px 0;
+      }
+      .navbar-brand {
+        color: white !important;
+        font-weight: bold;
+        margin-left: 20px;
+        font-size: 24px; /* Teks besar hanya di navbar */
+      }
+      /* Ukuran teks lebih kecil untuk semua konten lain */
+      body {
+        font-size: 14px;
+      }
+      .form-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .section-title {
+        background-color: #f8f9fa;
+        padding: 8px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .form-label {
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      .form-control,
+      .form-select,
+      .btn {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      .array-item {
+        border: 1px solid #eee;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        position: relative;
+      }
+      .remove-btn {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        padding: 2px 6px;
+        font-size: 12px;
+      }
+      textarea.form-control {
+        min-height: 80px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Green Navbar dengan teks besar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">FORM KERJASAMA</a>
+    <header class="bg-green-700 text-white shadow-md">
+      <div
+        class="container mx-auto flex justify-between items-center px-6 py-4"
+      >
+        <div class="flex items-center">
+          <img src="img/logo_upn.png" alt="Logo" class="h-12 mr-4" />
+          <h1 class="text-2xl font-bold">Pengajuan PKS UPNYK</h1>
         </div>
-    </nav>
+      </div>
+    </header>
 
     <div class="container mt-3 mb-4">
-        <form id="perjanjianForm">
-            <!-- Informasi Dokumen Section -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Informasi Dokumen</h2>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="judul" class="form-label">Judul Perjanjian</label>
-                            <input type="text" class="form-control" id="judul" name="dokumen.judul" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="tanggalTtd" class="form-label">Tanggal Tanda Tangan</label>
-                            <input type="date" class="form-control" id="tanggalTtd" name="dokumen.tanggalTtd" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <form id="perjanjianForm">
+        <!-- Informasi Dokumen Section -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Informasi Dokumen</h2>
+          </div>
 
-            <!-- Pihak Pertama (UPN) Section -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Pihak Pertama (UPN)</h2>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="pihakKesatuNama" class="form-label">Nama Pejabat</label>
-                            <input type="text" class="form-control" id="pihakKesatuNama" name="pihakKesatu.nama" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pihakKesatuInstitusi" class="form-label">Institusi/Fakultas</label>
-                            <input type="text" class="form-control" id="pihakKesatuInstitusi" name="pihakKesatu.institusi" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="pihakKesatuJabatan" class="form-label">Jabatan</label>
-                            <input type="text" class="form-control" id="pihakKesatuJabatan" name="pihakKesatu.jabatan" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pihakKesatuKontakEmail" class="form-label">Email Kontak</label>
-                            <input type="email" class="form-control" id="pihakKesatuKontakEmail" name="pihakKesatu.kontakEmail" required>
-                        </div>
-                    </div>
-                </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="judul" class="form-label">Judul Perjanjian</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="judul"
+                  name="dokumen.judul"
+                  required
+                />
+              </div>
             </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="tanggalTtd" class="form-label"
+                  >Tanggal Tanda Tangan</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="tanggalTtd"
+                  name="dokumen.tanggalTtd"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <!-- Pihak Kedua (Mitra) Section -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Pihak Kedua (Mitra)</h2>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="pihakKeduaNama" class="form-label">Nama Perwakilan</label>
-                            <input type="text" class="form-control" id="pihakKeduaNama" name="pihakKedua.nama" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pihakKeduaInstitusi" class="form-label">Nama Institusi/Perusahaan</label>
-                            <input type="text" class="form-control" id="pihakKeduaInstitusi" name="pihakKedua.institusi" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="pihakKeduaJabatan" class="form-label">Jabatan</label>
-                            <input type="text" class="form-control" id="pihakKeduaJabatan" name="pihakKedua.jabatan" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pihakKeduaKontakEmail" class="form-label">Email Kontak</label>
-                            <input type="email" class="form-control" id="pihakKeduaKontakEmail" name="pihakKedua.kontakEmail" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Pihak Pertama (UPN) Section -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Pihak Pertama (UPN)</h2>
+          </div>
 
-            <!-- Isi Perjanjian Section -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Isi Perjanjian</h2>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="tujuan" class="form-label">Tujuan Kerjasama</label>
-                    <textarea class="form-control" id="tujuan" name="isiPerjanjian.tujuan" rows="3" required></textarea>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Ruang Lingkup Kerjasama</label>
-                    <div id="ruangLingkupContainer">
-                        <div class="array-item">
-                            <div class="input-group mb-2">
-                                <input type="text" class="form-control" name="isiPerjanjian.ruangLingkup[]" required>
-                                <button type="button" class="btn btn-danger remove-btn" onclick="removeArrayItem(this)">×</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-secondary btn-sm" onclick="addArrayItem('ruangLingkupContainer', 'isiPerjanjian.ruangLingkup[]')">Tambah Ruang Lingkup</button>
-                </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="pihakKesatuNama" class="form-label"
+                  >Nama Pejabat</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pihakKesatuNama"
+                  name="pihakKesatu.nama"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pihakKesatuInstitusi" class="form-label"
+                  >Institusi/Fakultas</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pihakKesatuInstitusi"
+                  name="pihakKesatu.institusi"
+                  required
+                />
+              </div>
             </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="pihakKesatuJabatan" class="form-label"
+                  >Jabatan</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pihakKesatuJabatan"
+                  name="pihakKesatu.jabatan"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pihakKesatuKontakEmail" class="form-label"
+                  >Email Kontak</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="pihakKesatuKontakEmail"
+                  name="pihakKesatu.kontakEmail"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-                <button type="button" class="btn btn-secondary me-md-2 btn-sm">Batal</button>
-                <button type="submit" class="btn btn-primary btn-sm">Simpan Perjanjian</button>
+        <!-- Pihak Kedua (Mitra) Section -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Pihak Kedua (Mitra)</h2>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="pihakKeduaNama" class="form-label"
+                  >Nama Perwakilan</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pihakKeduaNama"
+                  name="pihakKedua.nama"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pihakKeduaInstitusi" class="form-label"
+                  >Nama Institusi/Perusahaan</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pihakKeduaInstitusi"
+                  name="pihakKedua.institusi"
+                  required
+                />
+              </div>
             </div>
-        </form>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="pihakKeduaJabatan" class="form-label"
+                  >Jabatan</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pihakKeduaJabatan"
+                  name="pihakKedua.jabatan"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pihakKeduaKontakEmail" class="form-label"
+                  >Email Kontak</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="pihakKeduaKontakEmail"
+                  name="pihakKedua.kontakEmail"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Isi Perjanjian Section -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Isi Perjanjian</h2>
+          </div>
+
+          <div class="mb-3">
+            <label for="tujuan" class="form-label">Tujuan Kerjasama</label>
+            <textarea
+              class="form-control"
+              id="tujuan"
+              name="isiPerjanjian.tujuan"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Ruang Lingkup Kerjasama</label>
+            <div id="ruangLingkupContainer">
+              <div class="array-item">
+                <div class="input-group mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="isiPerjanjian.ruangLingkup[]"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-danger remove-btn"
+                    onclick="removeArrayItem(this)"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              onclick="addArrayItem('ruangLingkupContainer', 'isiPerjanjian.ruangLingkup[]')"
+            >
+              Tambah Ruang Lingkup
+            </button>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+          <button type="button" class="btn btn-secondary me-md-2 btn-sm">
+            Batal
+          </button>
+          <button type="submit" class="btn btn-primary btn-sm">
+            Simpan Perjanjian
+          </button>
+        </div>
+      </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Function to add array items
-        function addArrayItem(containerId, name) {
-            const container = document.getElementById(containerId);
-            const newItem = document.createElement('div');
-            newItem.className = 'array-item';
-            newItem.innerHTML = `
+      // Function to add array items
+      function addArrayItem(containerId, name) {
+        const container = document.getElementById(containerId);
+        const newItem = document.createElement("div");
+        newItem.className = "array-item";
+        newItem.innerHTML = `
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" name="${name}">
                     <button type="button" class="btn btn-danger remove-btn" onclick="removeArrayItem(this)">×</button>
                 </div>
             `;
-            container.appendChild(newItem);
+        container.appendChild(newItem);
+      }
+
+      // Function to remove array items
+      function removeArrayItem(button) {
+        const item = button.closest(".array-item");
+        if (document.querySelectorAll(".array-item").length > 1) {
+          item.remove();
+        } else {
+          alert("Minimal harus ada satu item");
         }
-        
-        // Function to remove array items
-        function removeArrayItem(button) {
-            const item = button.closest('.array-item');
-            if (document.querySelectorAll('.array-item').length > 1) {
-                item.remove();
-            } else {
-                alert('Minimal harus ada satu item');
-            }
-        }
-        
-        // Form submission
-        document.getElementById('perjanjianForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically send the form data to the server
-            alert('Form submitted! In a real application, this would save the data.');
+      }
+
+      // Form submission
+      document
+        .getElementById("perjanjianForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          // Here you would typically send the form data to the server
+          alert(
+            "Form submitted! In a real application, this would save the data."
+          );
         });
     </script>
-</body>
+  </body>
 </html>

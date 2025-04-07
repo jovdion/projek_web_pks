@@ -1,426 +1,744 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Perjanjian Kerja Sama</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        .navbar-custom {
-            background-color: #2e7d32;
-            padding: 15px 0;
-        }
-        .navbar-brand {
-            color: white !important;
-            font-weight: bold;
-            margin-left: 20px;
-            font-size: 24px;
-        }
-        body {
-            font-size: 14px;
-        }
-        .form-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .section-title {
-            background-color: #f8f9fa;
-            padding: 8px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .form-label {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .form-control, .form-select, .btn {
-            font-size: 14px;
-            padding: 6px 12px;
-        }
-        .array-item {
-            border: 1px solid #eee;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            position: relative;
-        }
-        .remove-btn {
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            padding: 2px 6px;
-            font-size: 12px;
-        }
-        textarea.form-control {
-            min-height: 80px;
-        }
+      .navbar-custom {
+        background-color: #2e7d32;
+        padding: 15px 0;
+      }
+      .navbar-brand {
+        color: white !important;
+        font-weight: bold;
+        margin-left: 20px;
+        font-size: 24px;
+      }
+      body {
+        font-size: 14px;
+      }
+      .form-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .section-title {
+        background-color: #f8f9fa;
+        padding: 8px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .form-label {
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      .form-control,
+      .form-select,
+      .btn {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      .array-item {
+        border: 1px solid #eee;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        position: relative;
+      }
+      .remove-btn {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        padding: 2px 6px;
+        font-size: 12px;
+      }
+      textarea.form-control {
+        min-height: 80px;
+      }
+      .cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+      @media (max-width: 768px) {
         .cols-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+          grid-template-columns: 1fr;
         }
-        @media (max-width: 768px) {
-            .cols-3 {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">FORM KERJASAMA</a>
+  </head>
+  <body>
+    <header class="bg-green-700 text-white shadow-md">
+      <div
+        class="container mx-auto flex justify-between items-center px-6 py-4"
+      >
+        <div class="flex items-center">
+          <img src="img/logo_upn.png" alt="Logo" class="h-12 mr-4" />
+          <h1 class="text-2xl font-bold">Pengajuan PKS UPNYK</h1>
         </div>
-    </nav>
+      </div>
+    </header>
 
     <div class="container mt-3 mb-4">
-        <form id="perjanjianForm">
-            <!-- Informasi Dokumen -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Informasi Dokumen</h2>
-                </div>
-                <div class="cols-3">
-                    <div class="form-elem">
-                        <label class="form-label">Nomor Internal</label>
-                        <input type="text" class="form-control" name="dokumen.nomorInternal" placeholder="UN62/...">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Nomor Mitra</label>
-                        <input type="text" class="form-control" name="dokumen.nomorMitra" placeholder="Nomor dari mitra">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Judul Perjanjian</label>
-                        <input type="text" class="form-control" name="dokumen.judul" placeholder="Judul perjanjian" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Tanggal Tanda Tangan</label>
-                        <input type="date" class="form-control" name="dokumen.tanggalTtd" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Tempat Tanda Tangan</label>
-                        <input type="text" class="form-control" name="dokumen.tempatTtd" placeholder="Kota penandatanganan">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Upload Dokumen</label>
-                        <input type="file" class="form-control" name="dokumen.fileUpload" accept=".pdf,.docx">
-                    </div>
-                </div>
+      <form id="perjanjianForm">
+        <!-- Informasi Dokumen -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Informasi Dokumen</h2>
+          </div>
+          <div class="cols-3">
+            <div class="form-elem">
+              <label class="form-label">Nomor Internal</label>
+              <input
+                type="text"
+                class="form-control"
+                name="dokumen.nomorInternal"
+                placeholder="UN62/..."
+              />
             </div>
+            <div class="form-elem">
+              <label class="form-label">Nomor Mitra</label>
+              <input
+                type="text"
+                class="form-control"
+                name="dokumen.nomorMitra"
+                placeholder="Nomor dari mitra"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Judul Perjanjian</label>
+              <input
+                type="text"
+                class="form-control"
+                name="dokumen.judul"
+                placeholder="Judul perjanjian"
+                required
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Tanggal Tanda Tangan</label>
+              <input
+                type="date"
+                class="form-control"
+                name="dokumen.tanggalTtd"
+                required
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Tempat Tanda Tangan</label>
+              <input
+                type="text"
+                class="form-control"
+                name="dokumen.tempatTtd"
+                placeholder="Kota penandatanganan"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Upload Dokumen</label>
+              <input
+                type="file"
+                class="form-control"
+                name="dokumen.fileUpload"
+                accept=".pdf,.docx"
+              />
+            </div>
+          </div>
+        </div>
 
-            <!-- Nota Kesepahaman -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Nota Kesepahaman (MoU)</h2>
-                </div>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" name="notaKesepahaman.ada" id="adaMou">
-                    <label class="form-check-label" for="adaMou">Ada Nota Kesepahaman</label>
-                </div>
-                <div id="mouFields" style="display: none;">
-                    <div class="cols-3">
-                        <div class="form-elem">
-                            <label class="form-label">Nomor Internal MoU</label>
-                            <input type="text" class="form-control" name="notaKesepahaman.nomorInternal" placeholder="Nomor MoU dari UPN">
-                        </div>
-                        <div class="form-elem">
-                            <label class="form-label">Nomor Mitra MoU</label>
-                            <input type="text" class="form-control" name="notaKesepahaman.nomorMitra" placeholder="Nomor MoU dari mitra">
-                        </div>
-                        <div class="form-elem">
-                            <label class="form-label">Tanggal MoU</label>
-                            <input type="date" class="form-control" name="notaKesepahaman.tanggal">
-                        </div>
-                    </div>
-                </div>
+        <!-- Nota Kesepahaman -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Nota Kesepahaman (MoU)</h2>
+          </div>
+          <div class="form-check mb-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="notaKesepahaman.ada"
+              id="adaMou"
+            />
+            <label class="form-check-label" for="adaMou"
+              >Ada Nota Kesepahaman</label
+            >
+          </div>
+          <div id="mouFields" style="display: none">
+            <div class="cols-3">
+              <div class="form-elem">
+                <label class="form-label">Nomor Internal MoU</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="notaKesepahaman.nomorInternal"
+                  placeholder="Nomor MoU dari UPN"
+                />
+              </div>
+              <div class="form-elem">
+                <label class="form-label">Nomor Mitra MoU</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="notaKesepahaman.nomorMitra"
+                  placeholder="Nomor MoU dari mitra"
+                />
+              </div>
+              <div class="form-elem">
+                <label class="form-label">Tanggal MoU</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="notaKesepahaman.tanggal"
+                />
+              </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Pihak Pertama (UPN) -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Pihak Pertama (UPN)</h2>
-                </div>
-                <div class="cols-3">
-                    <div class="form-elem">
-                        <label class="form-label">Nama Pejabat</label>
-                        <input type="text" class="form-control" name="pihakKesatu.nama" placeholder="Nama dekan/pejabat" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Institusi</label>
-                        <input type="text" class="form-control" name="pihakKesatu.institusi" placeholder="Nama fakultas" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Alamat</label>
-                        <input type="text" class="form-control" name="pihakKesatu.alamat" placeholder="Alamat institusi">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Jabatan</label>
-                        <input type="text" class="form-control" name="pihakKesatu.jabatan" placeholder="Jabatan penandatangan" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Nama Kontak</label>
-                        <input type="text" class="form-control" name="pihakKesatu.kontakNama" placeholder="WD Kerjasama">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Email Kontak</label>
-                        <input type="email" class="form-control" name="pihakKesatu.kontakEmail" placeholder="Email kontak" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Telepon Kontak</label>
-                        <input type="tel" class="form-control" name="pihakKesatu.kontakTelp" placeholder="Nomor telepon">
-                    </div>
-                </div>
+        <!-- Pihak Pertama (UPN) -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Pihak Pertama (UPN)</h2>
+          </div>
+          <div class="cols-3">
+            <div class="form-elem">
+              <label class="form-label">Nama Pejabat</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKesatu.nama"
+                placeholder="Nama dekan/pejabat"
+                required
+              />
             </div>
+            <div class="form-elem">
+              <label class="form-label">Institusi</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKesatu.institusi"
+                placeholder="Nama fakultas"
+                required
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Alamat</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKesatu.alamat"
+                placeholder="Alamat institusi"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Jabatan</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKesatu.jabatan"
+                placeholder="Jabatan penandatangan"
+                required
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Nama Kontak</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKesatu.kontakNama"
+                placeholder="WD Kerjasama"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Email Kontak</label>
+              <input
+                type="email"
+                class="form-control"
+                name="pihakKesatu.kontakEmail"
+                placeholder="Email kontak"
+                required
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Telepon Kontak</label>
+              <input
+                type="tel"
+                class="form-control"
+                name="pihakKesatu.kontakTelp"
+                placeholder="Nomor telepon"
+              />
+            </div>
+          </div>
+        </div>
 
-            <!-- Pihak Kedua (Mitra) -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Pihak Kedua (Mitra)</h2>
-                </div>
-                <div class="cols-3">
-                    <div class="form-elem">
-                        <label class="form-label">Nama Perwakilan</label>
-                        <input type="text" class="form-control" name="pihakKedua.nama" placeholder="Nama perwakilan" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Institusi/Perusahaan</label>
-                        <input type="text" class="form-control" name="pihakKedua.institusi" placeholder="Nama institusi mitra" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Alamat</label>
-                        <input type="text" class="form-control" name="pihakKedua.alamat" placeholder="Alamat mitra">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Jabatan</label>
-                        <input type="text" class="form-control" name="pihakKedua.jabatan" placeholder="Jabatan perwakilan" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Nama Kontak</label>
-                        <input type="text" class="form-control" name="pihakKedua.kontakNama" placeholder="Nama kontak mitra">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Email Kontak</label>
-                        <input type="email" class="form-control" name="pihakKedua.kontakEmail" placeholder="Email mitra" required>
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Telepon Kontak</label>
-                        <input type="tel" class="form-control" name="pihakKedua.kontakTelp" placeholder="Telepon mitra">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Logo Mitra</label>
-                        <input type="file" class="form-control" name="pihakKedua.fileLogo" accept="image/*">
-                    </div>
-                </div>
+        <!-- Pihak Kedua (Mitra) -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Pihak Kedua (Mitra)</h2>
+          </div>
+          <div class="cols-3">
+            <div class="form-elem">
+              <label class="form-label">Nama Perwakilan</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKedua.nama"
+                placeholder="Nama perwakilan"
+                required
+              />
             </div>
+            <div class="form-elem">
+              <label class="form-label">Institusi/Perusahaan</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKedua.institusi"
+                placeholder="Nama institusi mitra"
+                required
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Alamat</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKedua.alamat"
+                placeholder="Alamat mitra"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Jabatan</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKedua.jabatan"
+                placeholder="Jabatan perwakilan"
+                required
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Nama Kontak</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pihakKedua.kontakNama"
+                placeholder="Nama kontak mitra"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Email Kontak</label>
+              <input
+                type="email"
+                class="form-control"
+                name="pihakKedua.kontakEmail"
+                placeholder="Email mitra"
+                required
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Telepon Kontak</label>
+              <input
+                type="tel"
+                class="form-control"
+                name="pihakKedua.kontakTelp"
+                placeholder="Telepon mitra"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Logo Mitra</label>
+              <input
+                type="file"
+                class="form-control"
+                name="pihakKedua.fileLogo"
+                accept="image/*"
+              />
+            </div>
+          </div>
+        </div>
 
-            <!-- Isi Perjanjian -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Isi Perjanjian</h2>
-                </div>
-                <div class="form-elem mb-3">
-                    <label class="form-label">Tujuan</label>
-                    <textarea class="form-control" name="isiPerjanjian.tujuan" placeholder="Tujuan kerjasama (Pasal 1)" required></textarea>
-                </div>
-                
-                <div class="form-elem mb-3">
-                    <label class="form-label">Ruang Lingkup</label>
-                    <div class="repeater" data-repeater-list="ruangLingkup">
-                        <div data-repeater-item>
-                            <div class="input-group mb-2">
-                                <input type="text" class="form-control" name="isiPerjanjian.ruangLingkup[]" placeholder="Ruang lingkup kerjasama (Pasal 2)" required>
-                                <button type="button" data-repeater-delete class="btn btn-danger remove-btn">×</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" data-repeater-create class="btn btn-secondary btn-sm">Tambah Ruang Lingkup</button>
-                </div>
-                
-                <div class="form-elem mb-3">
-                    <label class="form-label">Program Studi Terlibat</label>
-                    <div class="repeater" data-repeater-list="programStudi">
-                        <div data-repeater-item>
-                            <div class="input-group mb-2">
-                                <input type="text" class="form-control" name="isiPerjanjian.programStudi[]" placeholder="Nama program studi">
-                                <button type="button" data-repeater-delete class="btn btn-danger remove-btn">×</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" data-repeater-create class="btn btn-secondary btn-sm">Tambah Program Studi</button>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-elem mb-3">
-                            <label class="form-label">Kewajiban Pihak Pertama</label>
-                            <div class="repeater" data-repeater-list="kewajibanPihakKesatu">
-                                <div data-repeater-item>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" name="isiPerjanjian.kewajibanPihakKesatu[]" placeholder="Kewajiban UPN">
-                                        <button type="button" data-repeater-delete class="btn btn-danger remove-btn">×</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" data-repeater-create class="btn btn-secondary btn-sm">Tambah Kewajiban</button>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-elem mb-3">
-                            <label class="form-label">Kewajiban Pihak Kedua</label>
-                            <div class="repeater" data-repeater-list="kewajibanPihakKedua">
-                                <div data-repeater-item>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" name="isiPerjanjian.kewajibanPihakKedua[]" placeholder="Kewajiban mitra">
-                                        <button type="button" data-repeater-delete class="btn btn-danger remove-btn">×</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" data-repeater-create class="btn btn-secondary btn-sm">Tambah Kewajiban</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-elem mb-3">
-                            <label class="form-label">Hak Pihak Pertama</label>
-                            <div class="repeater" data-repeater-list="hakPihakKesatu">
-                                <div data-repeater-item>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" name="isiPerjanjian.hakPihakKesatu[]" placeholder="Hak UPN">
-                                        <button type="button" data-repeater-delete class="btn btn-danger remove-btn">×</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" data-repeater-create class="btn btn-secondary btn-sm">Tambah Hak</button>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-elem mb-3">
-                            <label class="form-label">Hak Pihak Kedua</label>
-                            <div class="repeater" data-repeater-list="hakPihakKedua">
-                                <div data-repeater-item>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" name="isiPerjanjian.hakPihakKedua[]" placeholder="Hak mitra">
-                                        <button type="button" data-repeater-delete class="btn btn-danger remove-btn">×</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" data-repeater-create class="btn btn-secondary btn-sm">Tambah Hak</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="cols-3">
-                    <div class="form-elem">
-                        <label class="form-label">Jangka Waktu (tahun)</label>
-                        <input type="number" class="form-control" name="isiPerjanjian.jangkaWaktu.tahun" placeholder="Jumlah tahun" min="1">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Tanggal Mulai</label>
-                        <input type="date" class="form-control" name="isiPerjanjian.jangkaWaktu.tanggalMulai">
-                    </div>
-                    <div class="form-elem">
-                        <label class="form-label">Tanggal Berakhir</label>
-                        <input type="date" class="form-control" name="isiPerjanjian.jangkaWaktu.tanggalAkhir">
-                    </div>
-                </div>
-                
-                <div class="form-check mt-3">
-                    <input class="form-check-input" type="checkbox" name="isiPerjanjian.hakKekayaanIntelektual.ada" id="adaHki">
-                    <label class="form-check-label" for="adaHki">Ada Klausul Hak Kekayaan Intelektual</label>
-                </div>
-                <div class="form-elem mt-2" id="hkiFields" style="display: none;">
-                    <label class="form-label">Keterangan HKI</label>
-                    <textarea class="form-control" name="isiPerjanjian.hakKekayaanIntelektual.keterangan" placeholder="Penjelasan hak kekayaan intelektual"></textarea>
-                </div>
-            </div>
+        <!-- Isi Perjanjian -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Isi Perjanjian</h2>
+          </div>
+          <div class="form-elem mb-3">
+            <label class="form-label">Tujuan</label>
+            <textarea
+              class="form-control"
+              name="isiPerjanjian.tujuan"
+              placeholder="Tujuan kerjasama (Pasal 1)"
+              required
+            ></textarea>
+          </div>
 
-            <!-- Status Perjanjian -->
-            <div class="form-section">
-                <div class="section-title">
-                    <h2 style="font-size: 16px;">Status Perjanjian</h2>
+          <div class="form-elem mb-3">
+            <label class="form-label">Ruang Lingkup</label>
+            <div class="repeater" data-repeater-list="ruangLingkup">
+              <div data-repeater-item>
+                <div class="input-group mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="isiPerjanjian.ruangLingkup[]"
+                    placeholder="Ruang lingkup kerjasama (Pasal 2)"
+                    required
+                  />
+                  <button
+                    type="button"
+                    data-repeater-delete
+                    class="btn btn-danger remove-btn"
+                  >
+                    ×
+                  </button>
                 </div>
-                <div class="cols-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="status.aktif" id="statusAktif" checked>
-                        <label class="form-check-label" for="statusAktif">Aktif</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="status.dibatalkan" id="statusDibatalkan">
-                        <label class="form-check-label" for="statusDibatalkan">Dibatalkan</label>
-                    </div>
-                    <div class="form-elem" id="pembatalanFields" style="display: none;">
-                        <label class="form-label">Alasan Pembatalan</label>
-                        <input type="text" class="form-control" name="status.alasanPembatalan" placeholder="Alasan pembatalan">
-                    </div>
-                </div>
+              </div>
             </div>
+            <button
+              type="button"
+              data-repeater-create
+              class="btn btn-secondary btn-sm"
+            >
+              Tambah Ruang Lingkup
+            </button>
+          </div>
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                <button type="button" class="btn btn-secondary me-md-2 btn-sm">Batal</button>
-                <button type="submit" class="btn btn-primary btn-sm">Simpan Perjanjian</button>
+          <div class="form-elem mb-3">
+            <label class="form-label">Program Studi Terlibat</label>
+            <div class="repeater" data-repeater-list="programStudi">
+              <div data-repeater-item>
+                <div class="input-group mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="isiPerjanjian.programStudi[]"
+                    placeholder="Nama program studi"
+                  />
+                  <button
+                    type="button"
+                    data-repeater-delete
+                    class="btn btn-danger remove-btn"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
             </div>
-        </form>
+            <button
+              type="button"
+              data-repeater-create
+              class="btn btn-secondary btn-sm"
+            >
+              Tambah Program Studi
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-elem mb-3">
+                <label class="form-label">Kewajiban Pihak Pertama</label>
+                <div class="repeater" data-repeater-list="kewajibanPihakKesatu">
+                  <div data-repeater-item>
+                    <div class="input-group mb-2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="isiPerjanjian.kewajibanPihakKesatu[]"
+                        placeholder="Kewajiban UPN"
+                      />
+                      <button
+                        type="button"
+                        data-repeater-delete
+                        class="btn btn-danger remove-btn"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  data-repeater-create
+                  class="btn btn-secondary btn-sm"
+                >
+                  Tambah Kewajiban
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-elem mb-3">
+                <label class="form-label">Kewajiban Pihak Kedua</label>
+                <div class="repeater" data-repeater-list="kewajibanPihakKedua">
+                  <div data-repeater-item>
+                    <div class="input-group mb-2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="isiPerjanjian.kewajibanPihakKedua[]"
+                        placeholder="Kewajiban mitra"
+                      />
+                      <button
+                        type="button"
+                        data-repeater-delete
+                        class="btn btn-danger remove-btn"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  data-repeater-create
+                  class="btn btn-secondary btn-sm"
+                >
+                  Tambah Kewajiban
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-elem mb-3">
+                <label class="form-label">Hak Pihak Pertama</label>
+                <div class="repeater" data-repeater-list="hakPihakKesatu">
+                  <div data-repeater-item>
+                    <div class="input-group mb-2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="isiPerjanjian.hakPihakKesatu[]"
+                        placeholder="Hak UPN"
+                      />
+                      <button
+                        type="button"
+                        data-repeater-delete
+                        class="btn btn-danger remove-btn"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  data-repeater-create
+                  class="btn btn-secondary btn-sm"
+                >
+                  Tambah Hak
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-elem mb-3">
+                <label class="form-label">Hak Pihak Kedua</label>
+                <div class="repeater" data-repeater-list="hakPihakKedua">
+                  <div data-repeater-item>
+                    <div class="input-group mb-2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="isiPerjanjian.hakPihakKedua[]"
+                        placeholder="Hak mitra"
+                      />
+                      <button
+                        type="button"
+                        data-repeater-delete
+                        class="btn btn-danger remove-btn"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  data-repeater-create
+                  class="btn btn-secondary btn-sm"
+                >
+                  Tambah Hak
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cols-3">
+            <div class="form-elem">
+              <label class="form-label">Jangka Waktu (tahun)</label>
+              <input
+                type="number"
+                class="form-control"
+                name="isiPerjanjian.jangkaWaktu.tahun"
+                placeholder="Jumlah tahun"
+                min="1"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Tanggal Mulai</label>
+              <input
+                type="date"
+                class="form-control"
+                name="isiPerjanjian.jangkaWaktu.tanggalMulai"
+              />
+            </div>
+            <div class="form-elem">
+              <label class="form-label">Tanggal Berakhir</label>
+              <input
+                type="date"
+                class="form-control"
+                name="isiPerjanjian.jangkaWaktu.tanggalAkhir"
+              />
+            </div>
+          </div>
+
+          <div class="form-check mt-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="isiPerjanjian.hakKekayaanIntelektual.ada"
+              id="adaHki"
+            />
+            <label class="form-check-label" for="adaHki"
+              >Ada Klausul Hak Kekayaan Intelektual</label
+            >
+          </div>
+          <div class="form-elem mt-2" id="hkiFields" style="display: none">
+            <label class="form-label">Keterangan HKI</label>
+            <textarea
+              class="form-control"
+              name="isiPerjanjian.hakKekayaanIntelektual.keterangan"
+              placeholder="Penjelasan hak kekayaan intelektual"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Status Perjanjian -->
+        <div class="form-section">
+          <div class="section-title">
+            <h2 style="font-size: 16px">Status Perjanjian</h2>
+          </div>
+          <div class="cols-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="status.aktif"
+                id="statusAktif"
+                checked
+              />
+              <label class="form-check-label" for="statusAktif">Aktif</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="status.dibatalkan"
+                id="statusDibatalkan"
+              />
+              <label class="form-check-label" for="statusDibatalkan"
+                >Dibatalkan</label
+              >
+            </div>
+            <div class="form-elem" id="pembatalanFields" style="display: none">
+              <label class="form-label">Alasan Pembatalan</label>
+              <input
+                type="text"
+                class="form-control"
+                name="status.alasanPembatalan"
+                placeholder="Alasan pembatalan"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+          <button type="button" class="btn btn-secondary me-md-2 btn-sm">
+            Batal
+          </button>
+          <button type="submit" class="btn btn-primary btn-sm">
+            Simpan Perjanjian
+          </button>
+        </div>
+      </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
     <script>
-        $(document).ready(function () {
-            // Initialize repeaters
-            $('.repeater').repeater({
-                show: function () {
-                    $(this).slideDown();
-                },
-                hide: function (deleteElement) {
-                    if (confirm('Apakah Anda yakin ingin menghapus item ini?')) {
-                        $(this).slideUp(deleteElement);
-                    }
-                },
-                ready: function (setIndexes) {
-                    // Set indexes on load
-                    setIndexes();
-                }
-            });
-
-            // Toggle MoU fields
-            $('input[name="notaKesepahaman.ada"]').change(function() {
-                $('#mouFields').toggle(this.checked);
-            });
-
-            // Toggle HKI fields
-            $('input[name="isiPerjanjian.hakKekayaanIntelektual.ada"]').change(function() {
-                $('#hkiFields').toggle(this.checked);
-            });
-
-            // Toggle pembatalan fields
-            $('input[name="status.dibatalkan"]').change(function() {
-                $('#pembatalanFields').toggle(this.checked);
-            });
-
-            // Calculate end date based on start date and duration
-            $('input[name="isiPerjanjian.jangkaWaktu.tanggalMulai"], input[name="isiPerjanjian.jangkaWaktu.tahun"]').change(function() {
-                const startDate = new Date($('input[name="isiPerjanjian.jangkaWaktu.tanggalMulai"]').val());
-                const years = parseInt($('input[name="isiPerjanjian.jangkaWaktu.tahun"]').val()) || 0;
-                
-                if (!isNaN(startDate.getTime()) && years > 0) {
-                    const endDate = new Date(startDate);
-                    endDate.setFullYear(endDate.getFullYear() + years);
-                    $('input[name="isiPerjanjian.jangkaWaktu.tanggalAkhir"]').val(endDate.toISOString().split('T')[0]);
-                }
-            });
-
-            // Form submission
-            $('#perjanjianForm').submit(function(e) {
-                e.preventDefault();
-                alert('Form submitted! In a real application, this would save the data.');
-                // Here you would typically send the form data to the server
-            });
+      $(document).ready(function () {
+        // Initialize repeaters
+        $(".repeater").repeater({
+          show: function () {
+            $(this).slideDown();
+          },
+          hide: function (deleteElement) {
+            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+              $(this).slideUp(deleteElement);
+            }
+          },
+          ready: function (setIndexes) {
+            // Set indexes on load
+            setIndexes();
+          },
         });
+
+        // Toggle MoU fields
+        $('input[name="notaKesepahaman.ada"]').change(function () {
+          $("#mouFields").toggle(this.checked);
+        });
+
+        // Toggle HKI fields
+        $('input[name="isiPerjanjian.hakKekayaanIntelektual.ada"]').change(
+          function () {
+            $("#hkiFields").toggle(this.checked);
+          }
+        );
+
+        // Toggle pembatalan fields
+        $('input[name="status.dibatalkan"]').change(function () {
+          $("#pembatalanFields").toggle(this.checked);
+        });
+
+        // Calculate end date based on start date and duration
+        $(
+          'input[name="isiPerjanjian.jangkaWaktu.tanggalMulai"], input[name="isiPerjanjian.jangkaWaktu.tahun"]'
+        ).change(function () {
+          const startDate = new Date(
+            $('input[name="isiPerjanjian.jangkaWaktu.tanggalMulai"]').val()
+          );
+          const years =
+            parseInt(
+              $('input[name="isiPerjanjian.jangkaWaktu.tahun"]').val()
+            ) || 0;
+
+          if (!isNaN(startDate.getTime()) && years > 0) {
+            const endDate = new Date(startDate);
+            endDate.setFullYear(endDate.getFullYear() + years);
+            $('input[name="isiPerjanjian.jangkaWaktu.tanggalAkhir"]').val(
+              endDate.toISOString().split("T")[0]
+            );
+          }
+        });
+
+        // Form submission
+        $("#perjanjianForm").submit(function (e) {
+          e.preventDefault();
+          alert(
+            "Form submitted! In a real application, this would save the data."
+          );
+          // Here you would typically send the form data to the server
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
