@@ -166,6 +166,106 @@
       .action-button:hover {
         background-color: #1b5e20;
       }
+
+      /* Login Modal */
+      .login-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 350px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .modal-header h2 {
+        margin: 0;
+        color: #2e7d32;
+      }
+
+      .close-btn {
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .login-submit {
+        width: 100%;
+        padding: 10px;
+        background-color: #2e7d32;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .login-submit:hover {
+        background-color: #1b5e20;
+      }
+
+      .error-message {
+        color: #f44336;
+        font-size: 14px;
+        margin-top: 10px;
+        display: none;
+      }
+
+      .login-button {
+        background-color: white;
+        color: #2e7d32;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .login-button:hover {
+        background-color: #f1f1f1;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 20px;
+        font-style: italic;
+        color: #666;
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -178,8 +278,35 @@
           <img src="img/logo_upn.png" alt="Logo" class="h-12 mr-4" />
           <h1 class="text-2xl font-bold">Pengajuan PKS UPNYK</h1>
         </div>
+        <button class="login-button" id="loginBtn">
+          <i class="fas fa-sign-in-alt mr-2"></i>Login
+        </button>
       </div>
     </header>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Login Admin</h2>
+          <span class="close-btn">&times;</span>
+        </div>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit" class="login-submit">Login</button>
+          <div id="errorMessage" class="error-message">
+            Username atau password salah!
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -187,8 +314,8 @@
         <!-- Search and Button Section -->
         <div class="action-container">
           <div class="search-box">
-            <input type="text" placeholder="Cari berdasarkan judul" />
-            <button class="search-button">Cari</button>
+            <input type="text" id="searchInput" placeholder="Cari berdasarkan judul" />
+            <button class="search-button" id="searchButton">Cari</button>
           </div>
           <a href="form.html">
             <button class="add-button">
@@ -199,7 +326,7 @@
         </div>
 
         <!-- Table Section -->
-        <table>
+        <table id="pksTable">
           <thead>
             <tr>
               <th>Judul</th>
@@ -209,7 +336,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tableBody">
             <tr>
               <td>Kerjasama Pendidikan dengan Universitas XYZ</td>
               <td>Teknik</td>
@@ -264,7 +391,105 @@
             </tr>
           </tbody>
         </table>
+        <div id="noResults" class="no-results">Tidak ada hasil yang ditemukan</div>
       </div>
     </div>
+
+    <script>
+      // Login Modal Functionality
+      const loginBtn = document.getElementById("loginBtn");
+      const loginModal = document.getElementById("loginModal");
+      const closeBtn = document.querySelector(".close-btn");
+      const loginForm = document.getElementById("loginForm");
+      const errorMessage = document.getElementById("errorMessage");
+
+      // Show modal when login button is clicked
+      loginBtn.addEventListener("click", () => {
+        loginModal.style.display = "block";
+      });
+
+      // Close modal when X is clicked
+      closeBtn.addEventListener("click", () => {
+        loginModal.style.display = "none";
+        errorMessage.style.display = "none";
+      });
+
+      // Close modal when clicking outside of it
+      window.addEventListener("click", (event) => {
+        if (event.target === loginModal) {
+          loginModal.style.display = "none";
+          errorMessage.style.display = "none";
+        }
+      });
+
+      // Handle form submission
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        
+        // Static credentials (username: admin, password: admin123)
+        if (username === "admin" && password === "admin123") {
+          // Redirect to adminview.html if login is successful
+          window.location.href = "adminview.html";
+        } else {
+          // Show error message
+          errorMessage.style.display = "block";
+        }
+      });
+
+      // Search Functionality
+      const searchInput = document.getElementById("searchInput");
+      const searchButton = document.getElementById("searchButton");
+      const tableBody = document.getElementById("tableBody");
+      const rows = tableBody.getElementsByTagName("tr");
+      const noResults = document.getElementById("noResults");
+
+      function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase();
+        let hasResults = false;
+
+        for (let i = 0; i < rows.length; i++) {
+          const row = rows[i];
+          const titleCell = row.cells[0]; // Judul is in the first column
+          const titleText = titleCell.textContent.toLowerCase();
+
+          if (titleText.includes(searchTerm)) {
+            row.style.display = "";
+            hasResults = true;
+          } else {
+            row.style.display = "none";
+          }
+        }
+
+        // Show no results message if no matches found
+        if (!hasResults && searchTerm.length > 0) {
+          noResults.style.display = "block";
+        } else {
+          noResults.style.display = "none";
+        }
+      }
+
+      // Search when button is clicked
+      searchButton.addEventListener("click", performSearch);
+
+      // Search when Enter key is pressed
+      searchInput.addEventListener("keyup", (event) => {
+        if (event.key === "Enter") {
+          performSearch();
+        }
+      });
+
+      // Show all results when search is cleared
+      searchInput.addEventListener("input", () => {
+        if (searchInput.value === "") {
+          for (let i = 0; i < rows.length; i++) {
+            rows[i].style.display = "";
+          }
+          noResults.style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>
